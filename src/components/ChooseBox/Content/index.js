@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
+import { AppContext } from '../../../context/appContext';
 import Modal from '../../Modal';
 
 const Div = styled.div`
@@ -45,7 +46,20 @@ const Div = styled.div`
 `;
 
 const Content = ({ title, slug, inventory }) => {
-
+    const [
+        inventoryPlayerOne,
+        setInventoryPlayerOne,
+        inventoryPlayerTwo,
+        setInventoryPlayerTwo,
+        gameStatus,
+        setGameStatus,
+        pokeList,
+        setPokeList,
+        chooseBoxPlayerOne,
+        setChooseBoxPlayerOne,
+        choosePlayerTwo,
+        setChoosePlayerTwo
+    ] = useContext(AppContext);
 
     return (
         <Div>
@@ -56,32 +70,48 @@ const Content = ({ title, slug, inventory }) => {
                 <div className="row">
                     <div className="col-md-12 mb-2">
                         <h4 className="d-flex justify-content-between align-items-center">
-                            <span>Área de troca {title} </span>
+                            <span>{title} </span>
                             {slug !== 'jogador-2' &&
-                                <button type="button" className="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    ADICIONAR CARTA <i className="fa fa-plus" aria-hidden="true"></i>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-secondary btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#modalPokeList"
+                                    disabled={
+                                        chooseBoxPlayerOne.length == 6
+                                    }
+                                >
+                                    SELECIONAR CARTA <i className="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             }
                         </h4>
                         <hr />
                     </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card__content">
-                                <figure className="d-flex justify-content-center align-items-center">
-                                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/296.png" alt="" />
-                                </figure>
-                                <div className="card-body">
-                                    <h5 className="card-title text-center">Charmander</h5>
-                                    <p>
-                                        <strong>Altura: </strong>6 <br />
-                                        <strong>Peso: </strong>120 <br />
-                                        <strong>Xp: </strong>60
-                                    </p>
+                    {chooseBoxPlayerOne.map((pokemon, index) => {
+                        return (
+                            <div key={index} className="col-4 mb-4 card__item">
+                                <div className="card">
+                                    <div className="card__content">
+                                        <figure className="d-flex justify-content-center align-items-center">
+                                            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                                        </figure>
+                                        <div className="card-body">
+                                            <div className="pokeName">
+                                                <h4 className="card-title text-center">{pokemon.name}</h4>
+                                            </div>
+                                            <hr />
+                                            <p>
+                                                <strong>Altura: </strong>{pokemon.height} <br />
+                                                <strong>Peso: </strong>{pokemon.weight} <br />
+                                                <strong>Xp: </strong>{pokemon.base_experience}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        )
+                    })
+                    }
                 </div>
             </div>
 

@@ -5,6 +5,8 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const [inventoryPlayerOne, setInventoryPlayerOne] = useState([]);
     const [inventoryPlayerTwo, setInventoryPlayerTwo] = useState([]);
+    const [chooseBoxPlayerOne, setChooseBoxPlayerOne] = useState([]);
+    const [choosePlayerTwo, setChoosePlayerTwo] = useState([]);
     const [pokeList, setPokeList] = useState('');
 
     const [gameStatus, setGameStatus] = useState(false);
@@ -18,7 +20,11 @@ export const AppProvider = ({ children }) => {
             gameStatus,
             setGameStatus,
             pokeList, 
-            setPokeList
+            setPokeList,
+            chooseBoxPlayerOne, 
+            setChooseBoxPlayerOne,
+            choosePlayerTwo, 
+            setChoosePlayerTwo
         ]}>
             {children}
         </AppContext.Provider>

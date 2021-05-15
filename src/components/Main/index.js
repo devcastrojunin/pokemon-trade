@@ -33,12 +33,12 @@ const Main = styled.main`
                     border-radius: 100%;
                     margin-right: 10px;
                 }
-                .pokeName{
-                    h4::first-letter{
-                        text-transform: uppercase;
-                    }
-                }
             }
+        }
+    }
+    .pokeName{
+        h4::first-letter{
+            text-transform: uppercase;
         }
     }
 `;

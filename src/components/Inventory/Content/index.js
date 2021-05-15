@@ -1,9 +1,14 @@
 const Content = ({ inventory, title }) => {
     return (
         <>
-            <div className="col-md-12 mb-2">
-                <h3 className="mb-0">Inventário {title}</h3>
-                <p>Itens apenas para visualização</p>
+            <div className="col-md-12 mb-2 d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 className="mb-0">{title}</h3>
+                    <p>Itens apenas para visualização</p>
+                </div>
+                <div>
+                    Total de cartas: <strong>{inventory.length}</strong>
+                </div>
             </div>
             <div className="col-12 mb-4 list">
                 <ul className="list-group">

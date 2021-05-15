@@ -50,16 +50,8 @@ const Trade = () => {
             {gameStatus &&
                 <div className="container">
                     <Tips />
-                    <div className="row">
-                        <div className="col-md-12">
-                            <ChooseBox />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <Inventory />
-                        </div>
-                    </div>
+                    <Inventory />
+                    <ChooseBox />
                 </div>
             }            
         </Main>

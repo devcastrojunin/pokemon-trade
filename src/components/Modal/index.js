@@ -1,33 +1,83 @@
+import { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import { AppContext } from "../../context/appContext";
+
+const Div = styled.div`
+    .modal-body{
+        .list-group{
+            li, li > div{
+                width: 100%;
+            }
+        }
+    }
+`;
+
 const Modal = ({data}) => {
+    const [
+        inventoryPlayerOne,
+        setInventoryPlayerOne,
+        inventoryPlayerTwo,
+        setInventoryPlayerTwo,
+        gameStatus,
+        setGameStatus,
+        pokeList, 
+        setPokeList,
+        chooseBoxPlayerOne, 
+        setChooseBoxPlayerOne,
+        choosePlayerTwo, 
+        setChoosePlayerTwo
+    ] = useContext(AppContext);
+
+    const [chooseBoxPlayerOneSelection, setChooseBoxPlayerOneSelection] = useState([])
+
+    const addCard = pokemon => {
+        if ((chooseBoxPlayerOneSelection.length + 1) <= 6) {
+            let setInventoryPlayerOneUpdate = inventoryPlayerOne.filter( item => item.id !== pokemon.id);
+            setInventoryPlayerOne(setInventoryPlayerOneUpdate);
+            setChooseBoxPlayerOneSelection([...chooseBoxPlayerOneSelection, pokemon])                
+        }else{
+            alert('Vc atingiu o número máximo de cartas para troca.')
+        }
+    }
+    
+    useEffect(() => {
+        console.log('chooseBoxPlayerOneSelection: ', chooseBoxPlayerOneSelection);
+        setChooseBoxPlayerOne(chooseBoxPlayerOneSelection);
+    }, [chooseBoxPlayerOneSelection])
 
     return (
-        <>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <Div>
+            <div className="modal fade" id="modalPokeList" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <ul className="list-group">
                                 {data.map((pokemmon, index) => {
                                     return (
                                         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                             <div className="d-flex justify-content-between align-items-center">
-                                                <figure>
-                                                    <img src={pokemmon.sprites.front_default} alt={pokemmon.name} />
-                                                </figure>
-                                                <div className="pokeInfos">
-                                                    <div className="pokeName">
-                                                        <h4>
-                                                            {pokemmon.name}
-                                                        </h4>
+                                                <div className="d-flex justify-content-between align-items-center">
+                                                    <figure>
+                                                        <img src={pokemmon.sprites.front_default} alt={pokemmon.name} />
+                                                    </figure>
+                                                    <div className="pokeInfos">
+                                                        <div className="pokeName">
+                                                            <h4>
+                                                                {pokemmon.name}
+                                                            </h4>
+                                                        </div>
+                                                        <p>
+                                                            <strong>Altura: </strong>{pokemmon.height} | <strong>Peso: </strong>{pokemmon.weight} | <strong>Xp: </strong>{pokemmon.base_experience}
+                                                        </p>
                                                     </div>
-                                                    <p>
-                                                        <strong>Altura: </strong>{pokemmon.height} | <strong>Peso: </strong>{pokemmon.weight} | <strong>Xp: </strong>{pokemmon.base_experience}
-                                                    </p>
                                                 </div>
+                                                <button type="button" className="btn btn-secondary btn-sm" onClick={e => addCard(data[index])}>
+                                                    ADICIONAR CARTA <i className="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
                                             </div>
                                         </li>
                                     )
@@ -35,14 +85,13 @@ const Modal = ({data}) => {
                                 }
                             </ul>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                        <div className="modal-footer">
+                            <button id="closeModal" type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </Div>
     );
 }
 

@@ -16,7 +16,7 @@ const Inventory = () => {
 
     const randomPokemonPlayerOneCreate = () => {
         let randPokemonList = [];
-        
+
         for (let index = 0; index < 20; index++) {
             let randPokemon = pokeList[Math.floor(Math.random() * pokeList.length)];
             randPokemonList.push(randPokemon);
@@ -43,20 +43,31 @@ const Inventory = () => {
     return (
         <>
             <div className="row">
-                {/* <div className="col-md-2"></div> */}
-                <div className="col-md-6">
-                    <div className="box-card">
-                        <div className="row">
-                            <Content  title="Jogador 1" inventory={inventoryPlayerOne}/>
-                        </div>
-                    </div>
+                <div className="col-md-12 mb-4 mt-5 text-center">
+                    <h3>Inventário</h3>
+                    <hr />
                 </div>
-                <div className="col-md-6">
-                    <div className="box-card">
-                        <div className="row">
-                            <Content  title="Jogador 2" inventory={inventoryPlayerTwo}/>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="row">
+                        {/* <div className="col-md-2"></div> */}
+                        <div className="col-md-5">
+                            <div className="box-card">
+                                <div className="row">
+                                    <Content title="Jogador 1" inventory={inventoryPlayerOne} />
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div className="col-md-2"></div>
+                        <div className="col-md-5">
+                            <div className="box-card">
+                                <div className="row">
+                                    <Content title="Jogador 2" inventory={inventoryPlayerTwo} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
         </>
