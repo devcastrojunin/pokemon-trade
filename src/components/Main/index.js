@@ -4,19 +4,6 @@ const Main = styled.main`
     background-color: #fefefe;
     box-sizing: border-box;
 
-    .box-card{
-        position: relative;
-        padding: 1rem 1rem 0;
-        border: 1px solid #dee2e6;
-        margin-bottom: 50px;
-    }
-    .card__item{
-        background-image: url('assets/images/icons8-plus-96.png');
-
-        .card{
-            min-height: 250px;
-        }
-    }
     .action-area{
         span{
             display: flex;

@@ -1,65 +1,31 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../context/appContext";
+import Content from "./Content";
 
 const ChooseBox = () => {
     const [
-        inventoryPlayerOne, 
+        inventoryPlayerOne,
         setInventoryPlayerOne,
-        inventoryPlayerTwo, 
+        inventoryPlayerTwo,
         setInventoryPlayerTwo,
-        gameStatus, 
+        gameStatus,
         setGameStatus
     ] = useContext(AppContext);
 
-    return(
+    return (
         <>
-            <div className="box-card">
-                <div className="row">
-                    <div className="col-md-12 mb-2">
-                        <h3>Área de troca jogador 1</h3>
-                    </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 data-bs-toggle="modal" data-bs-target="#exampleModal" className="card-title">Card title</h5>                                
-                            </div>
-                        </div>        
-                    </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>                                
-                            </div>
-                        </div>        
-                    </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>                                
-                            </div>
-                        </div>        
-                    </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>                                
-                            </div>
-                        </div>        
-                    </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>                                
-                            </div>
-                        </div>        
-                    </div>
-                    <div className="col-4 mb-4 card__item">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>                                
-                            </div>
-                        </div>        
-                    </div>
+            <div className="row">
+                <div className="col-md-5">
+                    <Content title="Jogador 1" slug="jogador-1" inventory={inventoryPlayerOne}/>                    
+                </div>
+                <div className="col-md-2 action-area text-center">
+                    <span>
+                        <i className="fa fa-retweet" aria-hidden="true"></i>
+                        <button type="button" className="btn btn-success">Trocar</button>
+                    </span>
+                </div>
+                <div className="col-md-5">
+                    <Content title="Jogador 2" slug="jogador-2" inventory={inventoryPlayerTwo}/>
                 </div>
             </div>
         </>

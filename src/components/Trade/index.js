@@ -34,48 +34,34 @@ const Trade = () => {
                 })
         }
         setPokeList(randPokemonList);
-    
-    }   
-    
+
+    }
+
     useEffect(() => {
-        fechPokemons();        
+        fechPokemons();
     }, []);
 
     return (
 
         <Main>
             {!gameStatus &&
-                <Initial /> 
+                <Initial />
             }
             {gameStatus &&
                 <div className="container">
                     <Tips />
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="row">
-                                <div className="col-md-5">
-                                    <ChooseBox />
-                                </div>
-                                <div className="col-md-2 action-area text-center">
-                                    <span>
-                                        <i className="fa fa-retweet" aria-hidden="true"></i>
-                                        <button type="button" className="btn btn-success">Trocar</button>
-                                    </span>
-                                </div>
-                                <div className="col-md-5">
-                                    <ChooseBox />
-                                </div>
-                            </div>
+                            <ChooseBox />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <Inventory/>
+                            <Inventory />
                         </div>
                     </div>
                 </div>
-            }
-            <Modal/>
+            }            
         </Main>
 
     )
