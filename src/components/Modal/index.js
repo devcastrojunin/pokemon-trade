@@ -24,8 +24,8 @@ const Modal = ({data}) => {
         setPokeList,
         chooseBoxPlayerOne, 
         setChooseBoxPlayerOne,
-        choosePlayerTwo, 
-        setChoosePlayerTwo
+        chooseBoxPlayerTwo, 
+        setChooseBoxPlayerTwo
     ] = useContext(AppContext);
 
     const [chooseBoxPlayerOneSelection, setChooseBoxPlayerOneSelection] = useState([])
@@ -41,7 +41,6 @@ const Modal = ({data}) => {
     }
     
     useEffect(() => {
-        console.log('chooseBoxPlayerOneSelection: ', chooseBoxPlayerOneSelection);
         setChooseBoxPlayerOne(chooseBoxPlayerOneSelection);
     }, [chooseBoxPlayerOneSelection])
 

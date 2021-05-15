@@ -10,8 +10,12 @@ const Inventory = () => {
         setInventoryPlayerTwo,
         gameStatus,
         setGameStatus,
-        pokeList,
-        setPokeList
+        pokeList, 
+        setPokeList,
+        chooseBoxPlayerOne, 
+        setChooseBoxPlayerOne,
+        chooseBoxPlayerTwo, 
+        setChooseBoxPlayerTwo
     ] = useContext(AppContext);
 
     const randomPokemonPlayerOneCreate = () => {
@@ -34,10 +38,12 @@ const Inventory = () => {
         setInventoryPlayerTwo(randPokemonList);
 
     }
-
+    
     useEffect(() => {
         randomPokemonPlayerOneCreate();
         randomPokemonPlayerTwoCreate();
+
+        document.getElementById('openModalInfo').click();
     }, [])
 
     return (
@@ -51,7 +57,6 @@ const Inventory = () => {
             <div className="row">
                 <div className="col-md-12">
                     <div className="row">
-                        {/* <div className="col-md-2"></div> */}
                         <div className="col-md-5">
                             <div className="box-card">
                                 <div className="row">

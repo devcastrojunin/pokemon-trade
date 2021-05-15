@@ -53,12 +53,12 @@ const Content = ({ title, slug, inventory }) => {
         setInventoryPlayerTwo,
         gameStatus,
         setGameStatus,
-        pokeList,
+        pokeList, 
         setPokeList,
-        chooseBoxPlayerOne,
+        chooseBoxPlayerOne, 
         setChooseBoxPlayerOne,
-        choosePlayerTwo,
-        setChoosePlayerTwo
+        chooseBoxPlayerTwo, 
+        setChooseBoxPlayerTwo
     ] = useContext(AppContext);
 
     return (
@@ -87,30 +87,61 @@ const Content = ({ title, slug, inventory }) => {
                         </h4>
                         <hr />
                     </div>
-                    {chooseBoxPlayerOne.map((pokemon, index) => {
-                        return (
-                            <div key={index} className="col-4 mb-4 card__item">
-                                <div className="card">
-                                    <div className="card__content">
-                                        <figure className="d-flex justify-content-center align-items-center">
-                                            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                                        </figure>
-                                        <div className="card-body">
-                                            <div className="pokeName">
-                                                <h4 className="card-title text-center">{pokemon.name}</h4>
+                    {slug === 'jogador-1' &&
+                        chooseBoxPlayerOne.map((pokemon, index) => {
+                            return (
+                                <div key={index} className="col-4 mb-4 card__item">
+                                    <div className="card">
+                                        <div className="card__content">
+                                            <figure className="d-flex justify-content-center align-items-center">
+                                                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                                            </figure>
+                                            <div className="card-body">
+                                                <div className="pokeName">
+                                                    <h4 className="card-title text-center">{pokemon.name}</h4>
+                                                </div>
+                                                <hr />
+                                                <p>
+                                                    <strong>Altura: </strong>{pokemon.height} <br />
+                                                    <strong>Peso: </strong>{pokemon.weight} <br />
+                                                    <strong>Xp: </strong>{pokemon.base_experience}
+                                                </p>
                                             </div>
-                                            <hr />
-                                            <p>
-                                                <strong>Altura: </strong>{pokemon.height} <br />
-                                                <strong>Peso: </strong>{pokemon.weight} <br />
-                                                <strong>Xp: </strong>{pokemon.base_experience}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })
+                            )
+                        })                        
+                    }
+                    {(slug === 'jogador-2' && chooseBoxPlayerTwo[0] !== undefined) &&
+                       <>
+                        {
+                             chooseBoxPlayerTwo.map((pokemon, index) => {
+                                return (
+                                    <div key={index} className="col-4 mb-4 card__item">
+                                        <div className="card">
+                                            <div className="card__content">
+                                                <figure className="d-flex justify-content-center align-items-center">
+                                                    <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                                                </figure>
+                                                <div className="card-body">
+                                                    <div className="pokeName">
+                                                        <h4 className="card-title text-center">{pokemon.name}</h4>
+                                                    </div>
+                                                    <hr />
+                                                    <p>
+                                                        <strong>Altura: </strong>{pokemon.height} <br />
+                                                        <strong>Peso: </strong>{pokemon.weight} <br />
+                                                        <strong>Xp: </strong>{pokemon.base_experience}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                       </>
                     }
                 </div>
             </div>

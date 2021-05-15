@@ -92,12 +92,18 @@ export const Container = styled.div`
 
 const Initial = ({children}) => {
     const [
-        inventoryPlayerOne, 
+        inventoryPlayerOne,
         setInventoryPlayerOne,
-        inventoryPlayerTwo, 
+        inventoryPlayerTwo,
         setInventoryPlayerTwo,
-        gameStatus, 
-        setGameStatus
+        gameStatus,
+        setGameStatus,
+        pokeList, 
+        setPokeList,
+        chooseBoxPlayerOne, 
+        setChooseBoxPlayerOne,
+        chooseBoxPlayerTwo, 
+        setChooseBoxPlayerTwo
     ] = useContext(AppContext);
 
     const handlerBall = () => {

@@ -6,7 +6,7 @@ export const AppProvider = ({ children }) => {
     const [inventoryPlayerOne, setInventoryPlayerOne] = useState([]);
     const [inventoryPlayerTwo, setInventoryPlayerTwo] = useState([]);
     const [chooseBoxPlayerOne, setChooseBoxPlayerOne] = useState([]);
-    const [choosePlayerTwo, setChoosePlayerTwo] = useState([]);
+    const [chooseBoxPlayerTwo, setChooseBoxPlayerTwo] = useState([]);
     const [pokeList, setPokeList] = useState('');
 
     const [gameStatus, setGameStatus] = useState(false);
@@ -23,8 +23,8 @@ export const AppProvider = ({ children }) => {
             setPokeList,
             chooseBoxPlayerOne, 
             setChooseBoxPlayerOne,
-            choosePlayerTwo, 
-            setChoosePlayerTwo
+            chooseBoxPlayerTwo, 
+            setChooseBoxPlayerTwo
         ]}>
             {children}
         </AppContext.Provider>

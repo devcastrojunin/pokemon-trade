@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../context/appContext";
 import Content from "./Content";
 
@@ -10,13 +10,28 @@ const ChooseBox = () => {
         setInventoryPlayerTwo,
         gameStatus,
         setGameStatus,
-        pokeList,
+        pokeList, 
         setPokeList,
-        chooseBoxPlayerOne,
+        chooseBoxPlayerOne, 
         setChooseBoxPlayerOne,
-        choosePlayerTwo,
-        setChoosePlayerTwo
+        chooseBoxPlayerTwo, 
+        setChooseBoxPlayerTwo
     ] = useContext(AppContext);
+
+    const setChooseBoxPlayerTwoList = () => {
+        let randPokemonList = [];
+        let randomNumber = Math.floor(Math.random() * 6) + 1;
+        for (let index = 0; index < randomNumber; index++) {
+            let randPokemon = inventoryPlayerTwo[Math.floor(Math.random() * inventoryPlayerTwo.length)];
+            randPokemonList.push(randPokemon);
+        }
+        setChooseBoxPlayerTwo(randPokemonList);   
+    }
+
+    useEffect(() => {
+        setChooseBoxPlayerTwoList();
+    }, [inventoryPlayerTwo])
+
     return (
         <>
             <div className="row">
