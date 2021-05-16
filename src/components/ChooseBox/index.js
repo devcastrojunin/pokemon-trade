@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/appContext";
 import Content from "./Content";
 
@@ -10,13 +10,16 @@ const ChooseBox = () => {
         setInventoryPlayerTwo,
         gameStatus,
         setGameStatus,
-        pokeList, 
+        pokeList,
         setPokeList,
-        chooseBoxPlayerOne, 
+        chooseBoxPlayerOne,
         setChooseBoxPlayerOne,
-        chooseBoxPlayerTwo, 
+        chooseBoxPlayerTwo,
         setChooseBoxPlayerTwo
     ] = useContext(AppContext);
+
+    const [xpPokePlayerOne, setXpPokePlayerOne] = useState(0);
+    const [xpPokePlayerTwo, setXpPokePlayerTwo] = useState(0);
 
     const setChooseBoxPlayerTwoList = () => {
         let randPokemonList = [];
@@ -25,12 +28,25 @@ const ChooseBox = () => {
             let randPokemon = inventoryPlayerTwo[Math.floor(Math.random() * inventoryPlayerTwo.length)];
             randPokemonList.push(randPokemon);
         }
-        setChooseBoxPlayerTwo(randPokemonList);   
+        setChooseBoxPlayerTwo(randPokemonList);
+    }
+
+    const getTotalXp = () => {
+        let totalXpPlayerOne = chooseBoxPlayerOne.reduce((acc, curr) => acc + curr.base_experience, 0);
+        let totalXpPlayerTwo = chooseBoxPlayerTwo.reduce((acc, curr) => acc + curr.base_experience, 0);
+
+        setXpPokePlayerOne(totalXpPlayerOne);
+        setXpPokePlayerTwo(totalXpPlayerTwo);
     }
 
     useEffect(() => {
         setChooseBoxPlayerTwoList();
     }, [inventoryPlayerTwo])
+
+    useEffect(() => {
+        if(chooseBoxPlayerOne[0] !== undefined)
+            getTotalXp();
+    }, [chooseBoxPlayerOne])
 
     return (
         <>
@@ -44,6 +60,11 @@ const ChooseBox = () => {
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-5">
+                            <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
+                                <div>
+                                    Soma total: <span class="badge bg-success">{xpPokePlayerOne}</span>
+                                </div>
+                            </div>
                             <Content title="Jogador 1" slug="jogador-1" inventory={inventoryPlayerOne} />
                         </div>
                         <div className="col-md-2 action-area text-center">
@@ -53,6 +74,11 @@ const ChooseBox = () => {
                             </span>
                         </div>
                         <div className="col-md-5">
+                            <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
+                                <div>
+                                    Soma total: <span class="badge bg-success">{xpPokePlayerTwo}</span>
+                                </div>
+                            </div>
                             <Content title="Jogador 2" slug="jogador-2" inventory={inventoryPlayerTwo} />
                         </div>
                     </div>

@@ -81,7 +81,7 @@ const Content = ({ title, slug, inventory }) => {
                                         chooseBoxPlayerOne.length == 6
                                     }
                                 >
-                                    SELECIONAR CARTA <i className="fa fa-plus" aria-hidden="true"></i>
+                                    SELECIONAR CARTAS PARA TROCA <i className="fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             }
                         </h4>
@@ -98,7 +98,7 @@ const Content = ({ title, slug, inventory }) => {
                                             </figure>
                                             <div className="card-body">
                                                 <div className="pokeName">
-                                                    <h4 className="card-title text-center">{pokemon.name}</h4>
+                                                    <h5 className="card-title text-center">{pokemon.name}</h5>
                                                 </div>
                                                 <hr />
                                                 <p>
@@ -126,7 +126,7 @@ const Content = ({ title, slug, inventory }) => {
                                                 </figure>
                                                 <div className="card-body">
                                                     <div className="pokeName">
-                                                        <h4 className="card-title text-center">{pokemon.name}</h4>
+                                                        <h5 className="card-title text-center">{pokemon.name}</h5>
                                                     </div>
                                                     <hr />
                                                     <p>

@@ -22,18 +22,12 @@ const Main = styled.main`
         }
     }
     .list{
-        height: 500px;
+        height: 1250px;
         overflow-y: auto;
 
-        ul{
-            li{
-                figure{
-                    margin: 0;
-                    border: 1px solid #000;
-                    border-radius: 100%;
-                    margin-right: 10px;
-                }
-            }
+        figure{
+            margin: 0;
+            border-radius: 5px;
         }
     }
     .pokeName{
