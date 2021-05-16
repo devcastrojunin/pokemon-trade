@@ -55,7 +55,7 @@ const Trade = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12 d-flex justify-content-between align-items-center mt-4">
-                            <a class="btn btn-primary" href="#inventory"><i class="fa fa-eye" aria-hidden="true"></i> Ver minhas cartas</a>
+                            <a id="inventoryList" className="btn btn-primary" href="#inventory"><i className="fa fa-eye" aria-hidden="true"></i> Ver minhas cartas</a>
                             <button type="button" className="btn btn-info d-flex justify-content-center align-items-center" id="openModalInfo" data-bs-toggle="modal" data-bs-target="#modalInfo">
                                 <i className="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;Dicas e informações
                             </button>

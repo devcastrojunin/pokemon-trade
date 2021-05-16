@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Main = styled.main`
     background-color: #fefefe;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 
     .action-area{
         span{
@@ -31,7 +32,7 @@ const Main = styled.main`
         }
     }
     .pokeName{
-        h4::first-letter{
+        h5::first-letter{
             text-transform: uppercase;
         }
     }

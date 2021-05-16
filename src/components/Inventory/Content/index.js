@@ -22,7 +22,7 @@ const Content = ({ inventory, title }) => {
                                         </figure>
                                         <div className="card-body">
                                             <div className="pokeName">
-                                                <h4 className="card-title text-center">{pokemon.name}</h4>
+                                                <h5 className="card-title text-center">{pokemon.name}</h5>
                                             </div>
                                             <hr />
                                             <p>

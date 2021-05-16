@@ -12,7 +12,7 @@ const Div = styled.div`
     }
 `;
 
-const Modal = ({data}) => {
+const Modal = () => {
     const [
         inventoryPlayerOne,
         setInventoryPlayerOne,
@@ -28,21 +28,15 @@ const Modal = ({data}) => {
         setChooseBoxPlayerTwo
     ] = useContext(AppContext);
 
-    const [chooseBoxPlayerOneSelection, setChooseBoxPlayerOneSelection] = useState([])
-
     const addCard = pokemon => {
-        if ((chooseBoxPlayerOneSelection.length + 1) <= 6) {
+        if ((chooseBoxPlayerOne.length + 1) <= 6) {
             let setInventoryPlayerOneUpdate = inventoryPlayerOne.filter( item => item.id !== pokemon.id);
             setInventoryPlayerOne(setInventoryPlayerOneUpdate);
-            setChooseBoxPlayerOneSelection([...chooseBoxPlayerOneSelection, pokemon])                
+            setChooseBoxPlayerOne([...chooseBoxPlayerOne, pokemon])                
         }else{
             alert('Vc atingiu o número máximo de cartas para troca.')
         }
-    }
-    
-    useEffect(() => {
-        setChooseBoxPlayerOne(chooseBoxPlayerOneSelection);
-    }, [chooseBoxPlayerOneSelection])
+    }    
 
     return (
         <Div>
@@ -55,32 +49,32 @@ const Modal = ({data}) => {
                         </div>
                         <div className="modal-body">
                             <ul className="list-group">
-                                {data.map((pokemmon, index) => {
-                                    return (
-                                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                                            <div className="d-flex justify-content-between align-items-center">
+                                {inventoryPlayerOne.map((pokemon, index) => {
+                                        return (
+                                            <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                                 <div className="d-flex justify-content-between align-items-center">
-                                                    <figure>
-                                                        <img src={pokemmon.sprites.front_default} alt={pokemmon.name} />
-                                                    </figure>
-                                                    <div className="pokeInfos">
-                                                        <div className="pokeName">
-                                                            <h4>
-                                                                {pokemmon.name}
-                                                            </h4>
+                                                    <div className="d-flex justify-content-between align-items-center">
+                                                        <figure>
+                                                            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                                                        </figure>
+                                                        <div className="pokeInfos">
+                                                            <div className="pokeName">
+                                                                <h5>
+                                                                    {pokemon.name}
+                                                                </h5>
+                                                            </div>
+                                                            <p>
+                                                                <strong>Altura: </strong>{pokemon.height} | <strong>Peso: </strong>{pokemon.weight} | <strong>Xp: </strong>{pokemon.base_experience}
+                                                            </p>
                                                         </div>
-                                                        <p>
-                                                            <strong>Altura: </strong>{pokemmon.height} | <strong>Peso: </strong>{pokemmon.weight} | <strong>Xp: </strong>{pokemmon.base_experience}
-                                                        </p>
                                                     </div>
+                                                    <button type="button" className="btn btn-secondary btn-sm" onClick={e => addCard(inventoryPlayerOne[index])}>
+                                                        ADICIONAR CARTA <i className="fa fa-plus" aria-hidden="true"></i>
+                                                    </button>
                                                 </div>
-                                                <button type="button" className="btn btn-secondary btn-sm" onClick={e => addCard(data[index])}>
-                                                    ADICIONAR CARTA <i className="fa fa-plus" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </li>
-                                    )
-                                })
+                                            </li>
+                                        )
+                                    })                                    
                                 }
                             </ul>
                         </div>
