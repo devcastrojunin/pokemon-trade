@@ -18,9 +18,10 @@ const ChooseBox = () => {
         setChooseBoxPlayerTwo
     ] = useContext(AppContext);
 
+    
     const [xpPokePlayerOne, setXpPokePlayerOne] = useState(0);
     const [xpPokePlayerTwo, setXpPokePlayerTwo] = useState(0);
-
+    
     const setChooseBoxPlayerTwoList = () => {
         let randPokemonList = [];
         let randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -29,14 +30,35 @@ const ChooseBox = () => {
             randPokemonList.push(randPokemon);
         }
         setChooseBoxPlayerTwo(randPokemonList);
+    }    
+
+    const tradeCards = () => {
+        let xpDiference = xpPokePlayerOne - xpPokePlayerTwo;
+
+        if (xpDiference > 10) {
+            let confirm = window.confirm('A troca não possui uma pontuação justa, deseja realizá-la?');
+            if (confirm) 
+                handleCards();
+
+            return false;
+        }else if (xpDiference < -10) {
+            alert('O jogador 2 recusou a troca, pois não achou a pontuação justa');
+            return false;
+        }else{
+            handleCards();
+        }
+
     }
 
-    const getTotalXp = () => {
-        let totalXpPlayerOne = chooseBoxPlayerOne.reduce((acc, curr) => acc + curr.base_experience, 0);
-        let totalXpPlayerTwo = chooseBoxPlayerTwo.reduce((acc, curr) => acc + curr.base_experience, 0);
-
-        setXpPokePlayerOne(totalXpPlayerOne);
-        setXpPokePlayerTwo(totalXpPlayerTwo);
+    const handleCards = () => {
+        let cardsIdPlayerOne = chooseBoxPlayerOne.map(({id}) => id);
+        let updateInventoryPlayerOne = inventoryPlayerOne.filter(item => !cardsIdPlayerOne.includes(item.id));
+        let currentList = [...chooseBoxPlayerTwo, ...updateInventoryPlayerOne];
+        
+        setInventoryPlayerOne(currentList);
+        setChooseBoxPlayerOne([]);
+        setChooseBoxPlayerTwo([]);
+        document.getElementById('inventoryList').click();
     }
 
     useEffect(() => {
@@ -44,9 +66,18 @@ const ChooseBox = () => {
     }, [inventoryPlayerTwo])
 
     useEffect(() => {
-        if(chooseBoxPlayerOne[0] !== undefined)
-            getTotalXp();
+        if(chooseBoxPlayerOne[0]){
+            let totalXpPlayerOne = chooseBoxPlayerOne.reduce((acc, curr) => acc + curr.base_experience, 0);            
+            setXpPokePlayerOne(totalXpPlayerOne);
+        }
     }, [chooseBoxPlayerOne])
+
+    useEffect(() => {
+        if(chooseBoxPlayerTwo[0]){
+            let totalXpPlayerTwo = chooseBoxPlayerTwo.reduce((acc, curr) => acc + curr.base_experience, 0);
+            setXpPokePlayerTwo(totalXpPlayerTwo); 
+        }
+    }, [chooseBoxPlayerTwo])
 
     return (
         <>
@@ -60,26 +91,37 @@ const ChooseBox = () => {
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-5">
-                            <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
-                                <div>
-                                    Soma total: <span class="badge bg-success">{xpPokePlayerOne}</span>
+                            {/* {chooseBoxPlayerOne.length > 0 &&
+                            }                             */}
+                                <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
+                                    <div>
+                                        Total de XP de todas as cartas: <span className="badge bg-success">{xpPokePlayerOne}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <Content title="Jogador 1" slug="jogador-1" inventory={inventoryPlayerOne} />
+                            <Content title="Jogador 1" slug="jogador-1" />
                         </div>
                         <div className="col-md-2 action-area text-center">
                             <span>
                                 <i className="fa fa-retweet" aria-hidden="true"></i>
-                                <button type="button" className="btn btn-success" disabled={chooseBoxPlayerOne.length == 0}>Trocar</button>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-success" 
+                                    disabled={chooseBoxPlayerOne.length == 0}
+                                    onClick={tradeCards}
+                                >
+                                    Trocar
+                                </button>
                             </span>
                         </div>
                         <div className="col-md-5">
-                            <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
-                                <div>
-                                    Soma total: <span class="badge bg-success">{xpPokePlayerTwo}</span>
-                                </div>
-                            </div>
-                            <Content title="Jogador 2" slug="jogador-2" inventory={inventoryPlayerTwo} />
+                                <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
+                                    <div>
+                                        Total de XP de todas as cartas: <span className="badge bg-success">{xpPokePlayerTwo}</span>
+                                    </div>
+                                </div>                                
+                            {/* {chooseBoxPlayerOne.length > 0 &&
+                            } */}
+                            <Content title="Jogador 2" slug="jogador-2" />
                         </div>
                     </div>
                 </div>
