@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { AppContext, AppProvider } from "../../context/appContext";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../../context/appContext";
 import { api } from "../../services/api";
 import ChooseBox from "../ChooseBox";
 import Initial from "../Initial";
