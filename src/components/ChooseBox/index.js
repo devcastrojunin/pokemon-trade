@@ -37,7 +37,7 @@ const ChooseBox = () => {
         let xpDiference = xpPokePlayerOne - xpPokePlayerTwo;
 
         if (xpDiference > 10) {
-            let confirm = window.confirm('A troca não possui uma pontuação justa, deseja realizá-la?');
+            let confirm = window.confirm('A troca não possui uma pontuação justa, deseja trocar mesmo assim?');
             if (confirm) 
                 handleCards();
 

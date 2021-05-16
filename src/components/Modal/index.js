@@ -34,7 +34,7 @@ const Modal = () => {
             setInventoryPlayerOne(setInventoryPlayerOneUpdate);
             setChooseBoxPlayerOne([...chooseBoxPlayerOne, pokemon])                
         }else{
-            alert('Vc atingiu o número máximo de cartas para troca.')
+            alert('Você pode adicionar no máximo 6 cartas para troca.')
         }
     }    
 
