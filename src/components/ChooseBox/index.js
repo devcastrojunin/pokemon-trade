@@ -21,6 +21,7 @@ const ChooseBox = () => {
     
     const [xpPokePlayerOne, setXpPokePlayerOne] = useState(0);
     const [xpPokePlayerTwo, setXpPokePlayerTwo] = useState(0);
+    const [restartAreaStatus, setRestartAreaStatus] = useState(false);
     
     const setChooseBoxPlayerTwoList = () => {
         let randPokemonList = [];
@@ -58,7 +59,13 @@ const ChooseBox = () => {
         setInventoryPlayerOne(currentList);
         setChooseBoxPlayerOne([]);
         setChooseBoxPlayerTwo([]);
+        alert('Troca realizada com sucesso! \nConfira no seu invetário.')
         document.getElementById('inventoryList').click();
+        setRestartAreaStatus(true);
+    }
+
+    const restartTrade = () => {
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -88,16 +95,21 @@ const ChooseBox = () => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12 position-relative">
+                    {restartAreaStatus &&
+                        <div className="restart-area d-flex justify-content-center align-items-center position-absolute top-0 start-0">
+                            <div className="d-flex justify-content-center align-items-center">
+                                <button onClick={restartTrade} className="btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i> Reiniciar</button>
+                            </div>
+                        </div>
+                    }
                     <div className="row">
                         <div className="col-md-5">
-                            {/* {chooseBoxPlayerOne.length > 0 &&
-                            }                             */}
-                                <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
-                                    <div>
-                                        Total de XP de todas as cartas: <span className="badge bg-success">{xpPokePlayerOne}</span>
-                                    </div>
+                            <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
+                                <div>
+                                    Total de XP de todas as cartas: <span className="badge bg-success">{xpPokePlayerOne}</span>
                                 </div>
+                            </div>
                             <Content title="Jogador 1" slug="jogador-1" />
                         </div>
                         <div className="col-md-2 action-area text-center">
@@ -114,13 +126,11 @@ const ChooseBox = () => {
                             </span>
                         </div>
                         <div className="col-md-5">
-                                <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
-                                    <div>
-                                        Total de XP de todas as cartas: <span className="badge bg-success">{xpPokePlayerTwo}</span>
-                                    </div>
-                                </div>                                
-                            {/* {chooseBoxPlayerOne.length > 0 &&
-                            } */}
+                            <div className="col-md-12 d-flex justify-content-start align-items-center mb-2">
+                                <div>
+                                    Total de XP de todas as cartas: <span className="badge bg-success">{xpPokePlayerTwo}</span>
+                                </div>
+                            </div>  
                             <Content title="Jogador 2" slug="jogador-2" />
                         </div>
                     </div>
