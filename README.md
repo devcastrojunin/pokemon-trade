@@ -11,6 +11,8 @@ React versão 17.0.2
 
 Node versão 12
 
+Deploy feito no heroku
+
 ### Rodar projeto
 `yarn install`
 
