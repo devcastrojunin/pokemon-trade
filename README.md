@@ -5,6 +5,10 @@ A idéia inicial é, ao iniciar a rodada, o jogador 2(bot) inicie oferecendo car
 
 Veja a [demonstração](https://poke-trade-bx.herokuapp.com)
 
+Esse projeto não persiste na base de dados. 
+
+API utilizada para carregamento de dados: [pokeapi.co](https://pokeapi.co/api/v2/)
+
 ## Tecnologias
 
 React versão 17.0.2
