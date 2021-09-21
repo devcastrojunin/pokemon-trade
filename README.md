@@ -1,7 +1,7 @@
 # Pokemon trade
 
 Esse projeto consiste em uma calculadora de troca de cartas Pokemon.
-A idéia inicial, ao iniciar a rodada, é que o jogador 2(bot) inicie oferecendo cartas aleatórias para troca, cabe a você, que será o jogador um aceitar ou não.
+A idéia inicial é, ao iniciar a rodada, o jogador 2(bot) inicie oferecendo cartas aleatórias para troca, cabe a você, que será o jogador um, aceitar ou não.
 
 Veja a [demonstração](http://localhost:3000)
 
